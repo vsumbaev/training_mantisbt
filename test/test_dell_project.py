@@ -14,4 +14,7 @@ def test_dell_project(app, db):
     project = random.choice(old_project)
     app.project.delete_project_by_name(project.name)
     new_project = db.get_project_list()
-    assert len(old_project) - 1 == len(new_project)
+    username = "administrator"
+    password = "root"
+    assert len(app.soap.get_list_of_projects(username, password)) == len(new_project)
+#    assert len(old_project) - 1 == len(new_project)
